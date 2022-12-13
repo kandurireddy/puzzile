@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container{
+        width:500px;
+        height: 300px;
+        margin:auto;
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 50px;
+        /* border: 1px solid gray; */
+        box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    }
+    #left{
+        width:70%;  
+        /* border: 1px solid red;   */
+        display: grid;
+        grid-template-columns: repeat(3 ,1fr);   
+                 
+    }
+        #right{
+            width:25%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-top: 10px;
+            /* border: 1px solid red; */
+        }
+    #left>div{
+        width:100%; 
+        /* border: 1px solid red; */
+        text-align: center;
+    }
+    #hallo{
+        /* width: 40px;
+        height: 40px; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        font-size: 24px;
+        font-weight: 700;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        /* color: white; */
+    }
+    #right button {
+        background-color: #09a1e7;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        color: azure;
+        font-size: 17px;
+
+    }
+    h3 {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+    
+</style>
+<body>
+    <center><h3>Shuffle and Sort</h3></center>
+    <div id="container">
+        <div id="left">        
+        </div>
+        <div id="right">
+            <div> <button onclick="shuffle()">Shuffle</button></div>
+            <div><button onclick="sortit()">sort</button></div>          
+            
+        </div>
+        
+    </div>
+    
+
+</body>
+</html>
+<script>
+    let arr=[1,2,3,4,5,6,7,8,9];
+    let color=["#000000","#2B8EAD","#333333","#6F98A8",'#4ddbff',"#00bfff","#4ddbff","#2F454E","#72C3DC"]
+// let 
+    let newarr = [];
+    for(let i=0 ; i<arr.length-1; i++){
+       newarr.push({s:arr[i],clr:color[i]})
+    }
+    // console.log(newarr)
+    display()
+
+    function sortit()
+    {
+        arr.sort();
+        display();
+    }
+
+      function shuffle()
+    {
+        function shuffle(array) {
+        array.sort(() => Math.random() - 0.5);
+            }
+        shuffle(arr)
+        display();
+    }
+
+    function display()
+    {
+        let parent=document.getElementById("left");
+        parent.innerHTML=null;
+        arr.forEach(function(ele,index){
+            let num = color.filter((e,i)=>i===ele)
+            let Box=document.createElement("div");
+            Box.setAttribute("id","hallo")
+            Box.innerHTML=ele;
+            Box.style.backgroundColor=num[0]
+            parent.append(Box);
+        })        
+    }
+
+
+
+</script>
